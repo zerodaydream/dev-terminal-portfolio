@@ -1,0 +1,45 @@
+<div class="terminal">
+  <!-- Mac-style header buttons -->
+  <div class="terminal-header">
+    <div class="circle red"></div>
+    <div class="circle yellow"></div>
+    <div class="circle green"></div>
+  </div>
+
+  <!-- Command hints bar -->
+  <div class="command-bar">
+    Try: 
+    <code>about</code> | 
+    <code>projects</code> | 
+    <code>tools</code> | 
+    <code>skills</code> | 
+    <code>awards</code> | 
+    <code>contact</code> | 
+    <code>clear</code> |
+    <code>resume</code> |
+    <code>profile</code>
+  </div>
+
+  <!-- Terminal content -->
+  <div class="terminal-output">
+    <!-- Intro logs -->
+    <div *ngFor="let line of logs">{{ line }}</div>
+
+    <!-- Streaming + static output -->
+    <div *ngFor="let line of output">
+      <span>{{ line }}</span>
+    </div>
+
+    <!-- Command input line -->
+    <form (submit)="runCommand(); $event.preventDefault();">
+      <span class="prompt"><strong>{{ user }}</strong></span>
+      <input
+        type="text"
+        [(ngModel)]="command"
+        name="commandInput"
+        autocomplete="off"
+        autofocus
+      />
+    </form>
+  </div>
+</div>
