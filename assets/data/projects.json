@@ -1,0 +1,47 @@
+[
+    {
+      "title": "EffDUCK Tumor Segmentation",
+      "repo": "https://github.com/zerodaydream/effduck-tumor",
+      "description": "Deep learning model for ovarian tumor segmentation using custom EffDUCK-Net."
+    },
+    {
+      "title": "Freya Fusion Chatbot",
+      "repo": "https://github.com/zerodaydream/freya-chatbot",
+      "description": "Multi-tenant AI chatbot built with FastAPI, SQLAlchemy, and React."
+    },
+    {
+      "title": "PDF Validator Toolkit",
+      "repo": "https://github.com/zerodaydream/pdf-validator",
+      "description": "Toolkit for validating PDF metadata, bookmarks, orientation, and structure."
+    },
+    {
+      "title": "Langchain Doc Ingestion",
+      "repo": "https://github.com/zerodaydream/langchain-ingestor",
+      "description": "Langchain + GPT-4 Turbo based intelligent checklist and ingestion pipeline."
+    },
+    {
+      "title": "Twitter GPT-Vision Extension",
+      "repo": "https://github.com/zerodaydream/twitter-vision-ext",
+      "description": "Chrome extension that scrapes Twitter and analyzes content using GPT-4 Vision."
+    },
+    {
+      "title": "SLP/DLP Generator",
+      "repo": "https://github.com/zerodaydream/slp-dlp-checklist",
+      "description": "Automates SLP and DLP checklists for regulatory documents using AI."
+    },
+    {
+      "title": "Video Subtitle Burner",
+      "repo": "https://github.com/zerodaydream/whisper-subtitle-app",
+      "description": "Subtitle overlay tool using Whisper and Deepgram ASR, built with Streamlit."
+    },
+    {
+      "title": "Weaviate Schema Builder",
+      "repo": "https://github.com/zerodaydream/weaviate-schema-utils",
+      "description": "Tools to build, validate, and ingest documents into Weaviate vector DB."
+    },
+    {
+      "title": "Resume Site Terminal UI",
+      "repo": "https://github.com/zerodaydream/dev-terminal-portfolio",
+      "description": "Interactive terminal-based developer portfolio with Angular + FastAPI."
+    }
+  ]
