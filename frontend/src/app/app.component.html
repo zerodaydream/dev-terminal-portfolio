@@ -1,8 +1,21 @@
 <app-matrix-background />
 
-<div class="full-page-container">
-  <div class="left-panel">
-    <ng-container *ngIf="!showResume; else resumeBlock">
+<!-- ABOUT PAGE TAKES FULLSCREEN -->
+<app-about *ngIf="showAbout" class="about-fullscreen fade-in"></app-about>
+
+<!-- NORMAL VIEWPORT WITH PANELS -->
+<div class="full-page-container" *ngIf="!showAbout">
+  <!-- LEFT PANEL -->
+  <div class="left-panel" [ngClass]="{ 'scrollable-projects': showProjects }">
+
+    <!-- Work Experience Timeline -->
+    <app-company-timeline *ngIf="workExp && !showProjects && !showResume"></app-company-timeline>
+
+    <!-- Projects Grid -->
+    <app-project-grid *ngIf="showProjects && !workExp && !showResume"></app-project-grid>
+
+    <!-- Default Profile View -->
+    <ng-container *ngIf="showDefaultProfile">
       <img src="assets/images/dhanush.jpg" class="profile-pic" />
       <h1 class="headline">Hi, I'm Dhanush 👋</h1>
       <p class="typewriter">
@@ -10,7 +23,8 @@
       </p>
     </ng-container>
 
-    <ng-template #resumeBlock>
+    <!-- Resume PDF View -->
+    <ng-container *ngIf="showResume && !workExp && !showProjects">
       <div class="resume-wrapper">
         <div *ngIf="isLoadingPdf" class="pdf-loader shimmer">Loading PDF...</div>
         <iframe
@@ -21,17 +35,37 @@
           (load)="isLoadingPdf = false"
         ></iframe>
       </div>
-    </ng-template>
+    </ng-container>
+
   </div>
 
-  <div class="right-panel">
-    <div class="terminal-wrapper" [style.height]="terminalHeight">
-      <div class="drag-handle" (mousedown)="startResize($event)"></div>
-  
-      <app-terminal
-        [height]="'100%'"
-        (commandIssued)="onTerminalCommand($event)">
-      </app-terminal>
-    </div>
+  <!-- RIGHT PANEL (empty partition) -->
+  <div class="right-panel"></div>
+</div>
+
+<!-- Terminal Icon (Bottom-Right Launcher) -->
+<div
+  class="terminal-fab"
+  (click)="showFloatingTerminal = true"
+  *ngIf="!showFloatingTerminal"
+>
+  <i class="fas fa-terminal"></i>
+</div>
+
+<!-- Floating Terminal Overlay -->
+<div
+  class="floating-terminal-overlay"
+  *ngIf="showFloatingTerminal"
+  [ngClass]="{ 'minimizing': terminalMinimized }"
+>
+  <div
+    class="floating-terminal"
+    [ngClass]="{ 'minimize-transition': terminalMinimized }"
+  >
+    <app-terminal
+      [height]="'80%'"
+      (commandIssued)="onTerminalCommand($event)"
+    ></app-terminal>
+    <button class="close-btn" (click)="closeFloatingTerminal()">×</button>
   </div>
 </div>

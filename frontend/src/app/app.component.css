@@ -8,7 +8,7 @@ html, body {
     background: #000;
   }
   
-  /* Matrix canvas layer behind everything */
+  /* Matrix background canvas */
   #matrix-canvas {
     position: fixed;
     top: 0;
@@ -19,20 +19,22 @@ html, body {
     background: #000;
   }
   
-  /* Page layout */
+  /* Page layout container */
   .full-page-container {
     position: relative;
     display: flex;
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
     z-index: 1;
   }
-
+  
+  /* Left & Right Panels (partition preserved) */
   .left-panel, .right-panel {
     flex: 1;
-    background: rgba(0, 0, 0, 0.45); /* matrix overlay effect */
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(0px);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
     border-left: 1px solid rgba(255, 255, 255, 0.05);
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.08);
@@ -41,7 +43,8 @@ html, body {
     align-items: center;
     justify-content: center;
   }
-
+  
+  /* Right panel placeholder */
   .right-panel {
     display: flex;
     flex-direction: column;
@@ -50,6 +53,7 @@ html, body {
     width: 100%;
   }
   
+  /* Resume PDF Wrapper */
   .resume-wrapper {
     position: relative;
     width: 100%;
@@ -58,26 +62,8 @@ html, body {
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 255, 0, 0.15);
   }
-
-  .terminal-wrapper {
-    transition: height 0.8s ease;
-    position: relative;
-    border-top: 1px solid #333;
-    resize: none;
-  }
-
-  .drag-handle {
-    height: 6px;
-    background: #444;
-    cursor: ns-resize;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2;
-  }
   
-  /* Loader Overlay */
+  /* Resume PDF Loading */
   .pdf-loader {
     position: absolute;
     top: 0;
@@ -95,7 +81,7 @@ html, body {
     border-radius: 8px;
   }
   
-  /* Shimmer effect */
+  /* Shimmer loading effect */
   .shimmer {
     background: linear-gradient(
       90deg,
@@ -108,22 +94,26 @@ html, body {
   }
   
   @keyframes shimmerAnim {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
   
-  /* Left-side personal content */
+  /* Left Panel Content */
   .left-panel {
     flex-direction: column;
     padding: 2rem;
     text-align: center;
     transition: all 0.8s ease;
+    height: 91vh;
+    overflow: hidden;
+    position: relative;
   }
   
+  .left-panel.scrollable-projects {
+    overflow-y: auto;
+  }
+  
+  /* Profile Image */
   .profile-pic {
     width: 200px;
     height: 200px;
@@ -133,6 +123,7 @@ html, body {
     margin-bottom: 1rem;
   }
   
+  /* Headline */
   .headline {
     font-size: 2rem;
     font-weight: bold;
@@ -140,12 +131,14 @@ html, body {
     margin-bottom: 0.5rem;
   }
   
+  /* Bio text (used in other components) */
   .bio {
     font-size: 1.2rem;
     max-width: 300px;
     color: #ccc;
   }
-
+  
+  /* Typing effect */
   .typewriter {
     font-size: 1.3rem;
     color: #00ff88;
@@ -155,6 +148,7 @@ html, body {
     margin-top: 1rem;
   }
   
+  /* Cursor blinking */
   .cursor {
     display: inline-block;
     width: 1px;
@@ -163,10 +157,138 @@ html, body {
   }
   
   @keyframes blink {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  /* About full screen overlay */
+  .about-fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: #0e0e0e;
+    color: white;
+    overflow-y: auto;
+    opacity: 0;
+    transform: scale(0.98);
+    animation: fadeInSmooth 0.6s ease-in-out forwards;
+  }
+  
+  .fade-in {
+    animation: fadeInSmooth 0.6s ease-in-out forwards;
+  }
+  
+  .fade-out {
+    animation: fadeOutSmooth 0.6s ease-in-out forwards;
+  }
+  
+  @keyframes fadeInSmooth {
+    from {
       opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes fadeOutSmooth {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+  }
+  
+  /* Floating terminal FAB icon */
+  .terminal-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1a1a1a;
+    color: #00ff88;
+    border-radius: 50%;
+    padding: 0.9rem;
+    box-shadow: 0 0 12px #00ff8855;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 101;
+    transition: all 0.3s ease;
+  }
+  
+  .terminal-fab:hover {
+    box-shadow: 0 0 18px #00ff88;
+    transform: scale(1.1);
+  }
+  
+  /* Floating terminal overlay */
+  .floating-terminal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 102;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Floating terminal core window */
+  .floating-terminal {
+    width: 43vw;
+    min-width: 320px;
+    height: 40vh;
+    background: #0c0c0c;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #00ff8877;
+    position: relative;
+    padding: 27px 9px 6px 21px;
+    animation: popIn 0.4s ease-in-out;
+  }
+  
+  /* On minimize transition */
+  .floating-terminal-overlay.minimizing {
+    backdrop-filter: none;
+    background: transparent;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 20px;
+    pointer-events: none;
+  }
+  
+  .floating-terminal.minimize-transition {
+    width: 44vw;
+    height: 39vh;
+    border-radius: 16px;
+    transition: all 0.6s ease;
+    transform: translate(0, 0);
+    box-shadow: 0 0 12px #00ff88aa;
+    pointer-events: all;
+  }
+  
+  /* Floating terminal close button */
+  .close-btn {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background: none;
+    color: #00ff88;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  @keyframes popIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }

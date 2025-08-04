@@ -3,6 +3,10 @@ import { TerminalComponent } from './components/terminal/terminal.component';
 import { MatrixBackgroundComponent } from './components/matrix-background/matrix-background.component';
 import { CommonModule } from '@angular/common';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { CompanyTimelineComponent } from './components/company-timeline/company-timeline.component';
+import { ProjectGridsComponent } from './components/projects-grid/projects-grid.component';
+import { AboutComponent } from './components/about/about.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -10,31 +14,38 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     TerminalComponent,
     MatrixBackgroundComponent,
     CommonModule,
-    SafeUrlPipe
+    SafeUrlPipe,
+    CompanyTimelineComponent,
+    ProjectGridsComponent,
+    AboutComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  terminalHeight: string = '100vh'
-  roles: string[] = [
-    'Fullstack',
-    'Data Science',
-    'Machine Learning',
-    'Artificial Intelligence',
-  ];
-  
+  terminalHeight: string = '100vh';
   displayedText = '';
+  roles: string[] = ['Fullstack', 'Data Science', 'Machine Learning', 'Artificial Intelligence'];
+
   private roleIndex = 0;
   private charIndex = 0;
   private typingSpeed = 100;
   private deletingSpeed = 40;
   private pauseTime = 1200;
+
   showResume = false;
-  isLoadingPdf = true;
+  isLoadingPdf = false;
   resumeKey = Date.now();
   resumeUrl = '../../assets/resume/resume.pdf';
-  isResizing = false;
+
+  workExp = false;
+  showProjects = false;
+  showAbout = true; // Show About page by default
+
+  showFloatingTerminal = false;
+  terminalMinimized = false;
+
+  showDefaultProfile = false;
 
   ngOnInit() {
     this.typeRole();
@@ -61,58 +72,59 @@ export class AppComponent {
   }
 
   onTerminalCommand(command: string) {
-    if (command === 'resume') {
-      this.terminalHeight = '36vh';
-      this.showResume = true;
-      this.isLoadingPdf = true;
-      this.resumeKey = Date.now(); 
-      // Delay 2 seconds before showing resume
+    const lowerCmd = command.trim().toLowerCase();
+    if (this.showFloatingTerminal) {
+      this.terminalMinimized = true;
       setTimeout(() => {
-        this.isLoadingPdf = false;
-        
-        // Reload iframe with cache buster
-        this.resumeUrl = `../../assets/resume/resume.pdf?${Date.now()}`;
-      }, 2000);
-    } 
-    else if (command !== 'resume' && this.terminalHeight !== '100vh') {
-      this.terminalHeight = '100vh';
-      this.showResume = false;
-      this.isLoadingPdf = false;
-    }
-    else if (command === 'profile') {
-      this.showResume = false;
-      this.isLoadingPdf = false;
-    }else if (command === 'clear') {
-      this.showResume = false;
-      this.isLoadingPdf = false;
+        this.runMainCommand(lowerCmd);
+      }, 900);
+    } else {
+      this.runMainCommand(lowerCmd);
     }
   }
 
-  startResize(event: MouseEvent) {
-    this.isResizing = true;
-  
-    const startY = event.clientY;
-    const startHeight = parseInt(this.terminalHeight);
-  
-    const onMouseMove = (e: MouseEvent) => {
-      if (!this.isResizing) return;
-  
-      const deltaMultiplier = 0.5; // Reduce height change rate
-      const delta = e.clientY - startY;
-      let newHeight = startHeight - (delta * deltaMultiplier);
-  
-      // Clamp it to make the increase/decrease feel slow and controlled
-      newHeight = Math.max(25, Math.min(100, newHeight)); // 20vh to 80vh
-      this.terminalHeight = `${newHeight}vh`;
-    };
-  
-    const onMouseUp = () => {
-      this.isResizing = false;
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
-    };
-  
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+  closeFloatingTerminal() {
+    this.terminalMinimized = false;
+    this.showFloatingTerminal = false;
+    this.terminalHeight = '100vh';
+  }
+
+  runMainCommand(cmd: string) {
+    this.terminalHeight = cmd === 'resume' ? '36vh' : '100vh';
+    document.body.style.overflow = cmd === 'about' ? 'hidden' : 'auto';
+
+    this.resetAllViews();
+
+    setTimeout(() => {
+      switch (cmd) {
+        case 'resume':
+          this.showResume = true;
+          this.isLoadingPdf = true;
+          this.resumeKey = Date.now();
+          setTimeout(() => (this.isLoadingPdf = false), 2000);
+          break;
+        case 'projects':
+          this.showProjects = true;
+          break;
+        case 'exp':
+          this.workExp = true;
+          break;
+        case 'about':
+          this.showAbout = true;
+          break;
+        default:
+          this.showDefaultProfile = true;
+          break;
+      }
+    }, 200);
+  }
+
+  resetAllViews() {
+    this.showResume = false;
+    this.isLoadingPdf = false;
+    this.workExp = false;
+    this.showProjects = false;
+    this.showAbout = false;
+    this.showDefaultProfile = false;
   }
 }

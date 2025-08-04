@@ -1,0 +1,11 @@
+<div class="grid-container">
+  <div class="card" *ngFor="let project of projects">
+    <div class="card-content">
+      <h2 class="title">{{ project.title }}</h2>
+      <p class="desc">{{ project.description }}</p>
+      <a [href]="project.repo" target="_blank" class="github-link">
+        <i class="fa-brands fa-github"></i> View Repo
+      </a>
+    </div>
+  </div>
+</div>
