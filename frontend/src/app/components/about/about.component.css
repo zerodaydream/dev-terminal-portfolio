@@ -1,0 +1,160 @@
+.about-wrapper {
+    width: 94vw;
+    max-width: 100%;
+    background: #0e0e0e;
+    color: #e6e6e6;
+    padding: 2rem;
+    font-family: 'Fira Code', monospace;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    position: relative;
+  }
+  
+  /* Profile Image */
+  .profile-pic {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    border: 2px solid #4ac55d;
+    z-index: 99;
+    object-fit: cover;
+    box-shadow: 0 0 10px #4ac55d;
+  }
+  
+  /* Socials Stack */
+  .social-stack {
+    position: absolute;
+    bottom: 2rem;
+    left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    z-index: 90;
+  }
+  
+  .social-stack a {
+    font-size: 1.5rem;
+    color: #4ac55d;
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-stack a:hover {
+    transform: scale(1.2);
+    color: #ffffff;
+  }
+
+  .intro-about{
+    font-size: 1.3rem;
+  }
+  
+  /* Terminal-style Headings */
+  .terminal-section {
+    margin-top: 6rem;
+    padding-left: 1rem;
+    border-left: 2px solid #4ac55d;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .terminal-section h1, .terminal-section h2 {
+    color: #4ac55d;
+    text-shadow: 0 0 10px #4ac55d;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* About Text */
+  .about-text p {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    max-width: fit-content;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,255,255,0.1);
+  }
+  
+  /* Cert Grid */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns */
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  
+  .cert-card {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #3cf3ff44;
+    box-shadow: 0 0 12px #3cf3ff22;
+    transition: transform 0.3s ease;
+  }
+  
+  .cert-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 0 15px #3cf3ff77;
+  }
+  
+  .cert-card img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1rem;
+    border-radius: 13px;
+  }
+  
+  .cert-card h3 {
+    color: #4ac55d;
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .cert-card a {
+    text-decoration: none;
+    color: #4ac55d;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  
+  /* Let's Work Together */
+  .collab {
+    margin-top: 5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    box-shadow: 0 0 20px #3cf3ff33;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  .collab p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    color: #ccc;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (max-width: 1024px) {
+    .cert-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .cert-grid {
+      grid-template-columns: 1fr;
+    }
+  }

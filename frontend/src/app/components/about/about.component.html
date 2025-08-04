@@ -1,0 +1,36 @@
+<div class="about-wrapper">
+    <img src="assets/images/dhanush.jpg" class="profile-pic" alt="Profile" />
+  
+    <div class="social-stack">
+      <a href="https://github.com/zerodaydream" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://linkedin.com/in/dhanush-a" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="mailto:adhanush.atwork@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+  
+    <section class="about-text terminal-section">
+      <h1>> whoami</h1>
+      <p class="intro-about">
+        Hey there 👋 I'm <strong>Dhanush</strong>, a full-stack developer with a passion for building intelligent, aesthetic UIs and powerful backend systems. I thrive in fusing creativity with logic — from Langchain pipelines to speech-powered terminals. Every pixel, every line of code I write, carries my obsession with seamless user experience and clean engineering. Scroll down and take a peek at my journey 🚀
+      </p>
+    </section>
+  
+    <section class="certifications terminal-section">
+      <h2>> certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-card" *ngFor="let cert of certifications">
+          <img [src]="cert.logo" alt="Logo" />
+          <h3>{{ cert.title }}</h3>
+          <p>{{ cert.issuer }}</p>
+          <small>{{ cert.date }}</small>
+          <a [href]="cert.link" target="_blank">View ↗</a>
+        </div>
+      </div>
+    </section>
+  
+    <section class="collab terminal-section">
+      <h2>> let's work together</h2>
+      <p>
+        Interested in building something cool together? Whether it's a cutting-edge AI project or a sleek interface — let’s make ideas reality. Drop me a message or connect on socials 🤝
+      </p>
+    </section>
+  </div>

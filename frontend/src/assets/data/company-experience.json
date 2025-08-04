@@ -1,0 +1,62 @@
+[
+    {
+      "logo": "assets/images/freyr.jpg",
+      "company": "Freyr Solutions",
+      "role": "Python Developer",
+      "duration": "Sept 2024 – Present",
+      "desc": "Migration & Re-architecture of Chatbot Platform",
+      "summary": "As a Python Developer at Freyr Solutions, I led the re-architecture of Freya Fusion’s chatbot platform across frontend and backend layers. The migration from Angular to React and .NET to FastAPI significantly improved performance, maintainability, and development agility. I implemented scalable APIs, enforced strict code quality standards, and led testing efforts, positioning the product for long-term growth.",
+      "details": [
+        "Re-architected the Freya Fusion Chatbot UI from Angular to React, improving codebase modularity and maintainability.",
+        "Migrated backend APIs from .NET to Python using FastAPI, optimizing request performance and async handling.",
+        "Created RESTful endpoints to manage chat sessions across tenants using SQLAlchemy and Pydantic models.",
+        "Implemented JWT-based authentication and tenant-level authorization logic for secured multi-user access.",
+        "Wrote comprehensive test suites using Behave (BDD) and Jest+RTL for API and UI testing, achieving >90% coverage.",
+        "Integrated Ruff for linting and enforced PEP8, type hinting, and autoformatting in CI workflows.",
+        "Streamlined dependency management using Poetry with reproducible builds across staging and prod.",
+        "Designed CI/CD pipelines with Azure DevSecOps to support multi-stage deployments and rollback mechanisms.",
+        "Led sprint demos and collaborated with cross-functional QA/Design teams during Agile story grooming sessions.",
+        "Resolved 20+ legacy bugs, refactored monolithic services into modular endpoints for improved reusability."
+      ]
+    },
+    {
+      "logo": "assets/images/freyr.jpg",
+      "company": "Freyr Solutions",
+      "role": "Fusion ML Intern",
+      "duration": "Feb 2024 – Sept 2024",
+      "desc": "AI-driven Document Validation and Ingestion Pipelines",
+      "summary": "At Freyr, I contributed to an intelligent automation platform for regulatory document validation. I built a Langchain-GPT-4 powered checklist generator, validated metadata and TOCs, and automated ingestion into a Weaviate vector DB. My role combined NLP, ML pipelines, and Agile engineering to ensure document compliance at scale.",
+      "details": [
+        "Built an SLP & DLP checklist generator to automate compliance validation using Langchain + GPT-4 Turbo.",
+        "Processed thousands of regulatory PDFs using PyMuPDF, PdfPlumber, PyPDF2, PikePDF, and Unstructured.",
+        "Extracted and verified metadata, page orientation, bookmarks, and document headers/footers programmatically.",
+        "Validated Global TOC Tracker, XML files, and Content Catalog Excel files using Pandas and OpenPyXL.",
+        "Ingested structured document metadata into Weaviate vector DB using batch-wise async processing.",
+        "Utilized OpenAI Tiktoken and chunking to tokenize 128K+ documents with schema-aware prompts.",
+        "Created intelligent ingestion pipelines with Langchain’s prompt templates and retrieval chains.",
+        "Wrote extensive unit tests using PyTest, Unittest and automated browser tests with Selenium.",
+        "Orchestrated workflows using aiboto3 for zip extraction, folder creation, and S3 integration.",
+        "Participated in Agile sprints: handled tickets, wrote grooming docs, and presented sprint demos."
+      ]
+    },
+    {
+      "logo": "assets/images/supertranslate.png",
+      "company": "Supertranslate.ai",
+      "role": "NLP Intern",
+      "duration": "May 2023 – Aug 2023",
+      "desc": "Subtitle Burn Platform using Whisper ASR",
+      "summary": "As an NLP Intern, I developed a speech-to-subtitle platform that burned auto-generated subtitles directly onto video using Deepgram and Whisper ASR. I built a fast Streamlit-based GUI, optimized subtitle alignment, and integrated ML tools for real-time inference, reducing manual effort significantly.",
+      "details": [
+        "Built a video subtitle burning app using Whisper Large and Deepgram ASR models.",
+        "Implemented live transcription and timestamp alignment using NLP heuristics.",
+        "Developed the UI using Streamlit and hosted locally with Localtunnel for demo sharing.",
+        "Handled multi-language support and speaker diarization using Whisper X extension.",
+        "Integrated MoviePy and FFmpeg for dynamic subtitle rendering and encoding.",
+        "Used MediaPipe and YOLOv6 to detect speaker lip sync and enhance subtitle timing.",
+        "Optimized inference latency by batching transcriptions and caching token streams.",
+        "Designed subtitle styling templates to enhance visual readability on all screen sizes.",
+        "Handled multilingual pipelines using HuggingFace tokenizers and pretrained transformers.",
+        "Collaborated with a 3-person R&D team to present PoC to product leadership."
+      ]
+    }
+  ]

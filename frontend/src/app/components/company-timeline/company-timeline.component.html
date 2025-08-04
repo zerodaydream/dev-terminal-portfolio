@@ -1,0 +1,25 @@
+<div class="company-timeline">
+    <div *ngIf="!expandedCompany" class="logo-list">
+      <div class="company-logo-wrapper" *ngFor="let exp of experiences" (click)="expandCompany(exp)">
+        <img [src]="exp.logo" [alt]="exp.company" class="company-logo" />
+        <div class="logo-popup">
+          <h4>{{ exp.company }}</h4>
+          <p><strong>{{ exp.role }}</strong></p>
+          <p>{{ exp.duration }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="expandedCompany" class="expanded-view">
+      <img [src]="expandedCompany.logo" class="moving-logo" />
+      <div class="expanded-content">
+        <h2>{{ expandedCompany.company }}</h2>
+        <p class="role">{{ expandedCompany.role }} <span class="duration">({{ expandedCompany.duration }})</span></p>
+        <p class="desc">{{ expandedCompany.desc }}</p>
+        <ul class="details">
+          <li *ngFor="let point of expandedCompany.details">{{ point }}</li>
+        </ul>
+        <button class="back-button" (click)="closeExpanded()">← Back</button>
+      </div>
+    </div>
+  </div>

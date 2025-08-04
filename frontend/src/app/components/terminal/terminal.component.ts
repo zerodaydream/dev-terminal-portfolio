@@ -53,7 +53,7 @@ export class TerminalComponent {
           'Available commands:\n' +
           '| help      - Show available commands\n' +
           '| about     - Who is Dhanush?\n' +
-          '| projects  - Peek at top work\n' +
+          '| exp  - Peek at my work experience\n' +
           '| tools     - Tech I breathe\n' +
           '| contact   - Reach out\n' +
           '| awards    - Trophies & medals\n' +
@@ -97,6 +97,9 @@ export class TerminalComponent {
       case 'profile':
         this.streamText("Opening profile...");
         break;
+        case 'exp':
+          this.streamText("Compilation Done, fetching work experience...");
+          break;
       default:
         const suggestion = this.getClosestCommand(trimmed);
         this.streamText(
