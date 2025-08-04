@@ -5,7 +5,9 @@
     <ng-container *ngIf="!showResume; else resumeBlock">
       <img src="assets/images/dhanush.jpg" class="profile-pic" />
       <h1 class="headline">Hi, I'm Dhanush 👋</h1>
-      <p class="bio">ML Engineer • Fullstack Dev • UI Artist</p>
+      <p class="typewriter">
+        <span>{{ displayedText }}</span><span class="cursor">|</span>
+      </p>
     </ng-container>
 
     <ng-template #resumeBlock>
@@ -23,6 +25,13 @@
   </div>
 
   <div class="right-panel">
-    <app-terminal (commandIssued)="onTerminalCommand($event)"></app-terminal>
+    <div class="terminal-wrapper" [style.height]="terminalHeight">
+      <div class="drag-handle" (mousedown)="startResize($event)"></div>
+  
+      <app-terminal
+        [height]="'100%'"
+        (commandIssued)="onTerminalCommand($event)">
+      </app-terminal>
+    </div>
   </div>
 </div>

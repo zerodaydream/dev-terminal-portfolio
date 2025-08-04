@@ -1,5 +1,5 @@
 // Updated TerminalComponent with streaming, history, corrections, and personal intro
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./terminal.component.css']
 })
 export class TerminalComponent {
+  @Input() height: string = '100vh';
   command: string = '';
   output: string[] = [];
   logs: string[] = [];
@@ -23,10 +24,7 @@ export class TerminalComponent {
   @Output() commandIssued = new EventEmitter<string>();
 
   constructor() {
-    this.animateIntro([
-      '🟢 Welcome to Dhanush\'s Dev Terminal!',
-      'Type `help` to explore.'
-    ]);
+    this.streamText('🟢 Welcome to Dhanush\'s Dev Terminal!\n Type `help` to explore.');
   }
 
   animateIntro(lines: string[], delay: number = 600) {
