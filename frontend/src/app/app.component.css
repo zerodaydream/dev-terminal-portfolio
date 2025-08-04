@@ -43,16 +43,38 @@ html, body {
   }
 
   .right-panel {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 90vh;
+    width: 100%;
   }
   
   .resume-wrapper {
     position: relative;
     width: 100%;
-    height: 95%;
+    height: 100%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 0 12px rgba(0, 255, 0, 0.15);
+  }
+
+  .terminal-wrapper {
+    transition: height 0.8s ease;
+    position: relative;
+    border-top: 1px solid #333;
+    resize: none;
+  }
+
+  .drag-handle {
+    height: 6px;
+    background: #444;
+    cursor: ns-resize;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
   }
   
   /* Loader Overlay */
@@ -99,6 +121,7 @@ html, body {
     flex-direction: column;
     padding: 2rem;
     text-align: center;
+    transition: all 0.8s ease;
   }
   
   .profile-pic {
@@ -121,4 +144,29 @@ html, body {
     font-size: 1.2rem;
     max-width: 300px;
     color: #ccc;
+  }
+
+  .typewriter {
+    font-size: 1.3rem;
+    color: #00ff88;
+    font-family: 'Courier New', Courier, monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-top: 1rem;
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 1px;
+    background-color: #00ff88;
+    animation: blink 0.8s infinite;
+  }
+  
+  @keyframes blink {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
